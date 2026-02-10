@@ -12,35 +12,31 @@ Include the neural network model diagram.
 ## DESIGN STEPS
 ### STEP 1: 
 
-Write your own steps
+Data Preparation and Transformation
 
 ### STEP 2: 
 
-
+Architecture Initialization
 
 ### STEP 3: 
 
-
+Defining the Strategy (Loss & Optimizer)
 
 ### STEP 4: 
 
-
+The Training Loop (The "Learning" Phase)
 
 ### STEP 5: 
 
-
-
-### STEP 6: 
-
-
+Evaluation and Model Persistence
 
 
 
 ## PROGRAM
 
-### Name:
+### Name:Lakshmen Prashanth R
 
-### Register Number:
+### Register Number: 212224230137
 
 ```python
 import torch
@@ -102,6 +98,108 @@ y_test = torch.LongTensor(y_test)
 
 criterion = nn.CrossEntropyLoss()  # multi class clasification problem 
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01)   # 0.000001
+
+model.parameters
+
+epochs = 100
+losses = []
+
+for i in range(epochs):
+    
+    i+=1
+
+    # Forward and get a prediction 
+    
+    y_pred = model.forward(X_train)
+
+    #Calculation Loss/error
+    loss = criterion(y_pred, y_train)
+    
+    losses.append(loss.item())
+    
+    # a neat trick to save screen space:
+    if i%10 == 1:
+        print(f'epoch: {i}  loss: {loss.item()}')
+
+    #Backpropagation
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+
+plt.plot(range(epochs), losses)
+
+plt.ylabel('Loss')
+plt.xlabel('epoch');
+
+correct = 0
+
+with torch.no_grad():
+
+    for i,data in enumerate(X_test):
+
+        y_val =model.forward(data)
+
+        #1.) 2.) 3.)
+
+        print(f'{i+1}.) {str(y_val)} {y_test[i]}')
+
+        # 0 1 2
+
+        if y_val.argmax().item() == y_test[i]:
+            correct +=1
+
+print(f'We got {correct} correct!')
+
+ print(f'{i+1}.) {str(y_val.argmax().item())} {y_test[i]}')
+torch.save(model.state_dict(),'my_iris_model.pt')
+```
+
+### DataSet information:
+
+Add ScreenShot of the dataset
+
+### OUTPUT:
+
+<img width="795" height="529" alt="image" src="https://github.com/user-attachments/assets/cd6d868d-0c16-409d-b512-de96a088fe0f" />
+
+
+<img width="778" height="248" alt="image" src="https://github.com/user-attachments/assets/6fae6eed-3792-4c6a-bcbd-67ebdb5c3027" />
+
+<img width="772" height="245" alt="image" src="https://github.com/user-attachments/assets/a478f822-267b-4836-b070-5c5301112553" />
+
+<img width="385" height="57" alt="image" src="https://github.com/user-attachments/assets/d09b571c-9f35-49d2-af48-fa9e1e83ff72" />
+
+<img width="294" height="53" alt="image" src="https://github.com/user-attachments/assets/fd3779a3-50de-4c21-ac94-51b0c4dec01b" />
+
+<img width="596" height="125" alt="image" src="https://github.com/user-attachments/assets/e16b4eb3-9469-4ff1-97ef-e79490df592f" />
+
+<img width="421" height="232" alt="image" src="https://github.com/user-attachments/assets/5851cd07-2cfb-43b8-95af-fe20974751b7" />
+
+<img width="797" height="572" alt="image" src="https://github.com/user-attachments/assets/91ed388f-9e97-4c19-9939-e3154ba51070" />
+
+<img width="488" height="663" alt="image" src="https://github.com/user-attachments/assets/9bbdc88b-ebf1-408b-a454-bafa6d7c9f32" />
+
+
+
+<img width="127" height="39" alt="image" src="https://github.com/user-attachments/assets/e644a813-3d32-486d-ace6-6c8f9509d741" />
+
+### RESULT:
+Thus, a neural network classification model was successfully developed and trained using PyTorch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
